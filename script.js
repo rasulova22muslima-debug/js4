@@ -10,37 +10,40 @@ console.log((num(name, year, now)));
 
 
 
-let n = +prompt("Сколько примеров?");
-for (let i = 1; i <= n; i++) {
-  console.log(primer());
+function randomaizer(min = 1, max = 100) {
+  return Math.floor(Math.random() * (max + 1 - min) + min);
+}
+let amoutExamples = +prompt("Введите кол-во решаемых задач");
+
+for (let i = 0; i < amoutExamples; i++) {
+  console.log(i);
+  let num1 = randomaizer();
+  let num2 = randomaizer();
+  let symbol = randomaizer(1, 4);
+  let examples = 0;
+
+  if (symbol == 1) {
+    examples = num1 + num2
+    symbol = "+"
+  } else if (symbol == 2) {
+    examples = num1 - num2
+    symbol = '-'
+  }
+  else if (symbol == 3) {
+    examples = num1 * num2
+    symbol = '*'
+  }
+  else {
+    examples = num1 / num2
+    symbol = "/"
+  }
+  let question = +prompt(num1 + symbol + num2 + ' = ?')
+  alert(
+    question === examples
+      ?` Ваш ответ верный - ${ question }`
+      : `Ваш ответ не верный - ${ question }.Правильный ответ - ${ examples }!`
+  );
 }
 
-function primer() {
-  let a = Math.floor(Math.random() * 10) + 1;
-  let b = Math.floor(Math.random() * 10) + 1;
-  let num = Math.floor(Math.random() * 4); 
-  let number;
-  let res;
 
-  if (num === 0) {
-    number = a + " + " + b;
-    res = a + b;
-  } else if (num === 1) {
-    number = a + " - " + b;
-    res = a - b;
-  } else if (num === 2) {
-    number = a + " * " + b;
-    res = a * b;
-  } else {
-    number = a + " / " + b;
-    res = a / b;
-  }
 
-  let answer = +prompt("Реши: " + number);
-
-  if (answer === res) {
-    return "Ваш ответ верный: " + answer;
-  } else {
-    return "Ваш ответ не верный: " + answer + "! Правильный ответ: " + res + "!";
-  }
-}
